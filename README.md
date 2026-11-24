@@ -85,7 +85,7 @@ Tested on real machines, launching and usable:
 
 2. **Add the art assets** — open `Images/` and drop in the files listed in [Art assets](#art-assets). Missing images still compile, but tiles and the splash screen will be blank.
 
-3. **Open the solution** — double-click `MemoriesDemo.sln`. If you get "the project type is not supported", the Win8 SDK is not installed correctly.
+3. * * Create Solution * * - Language Selection: Visual C # ->Windows Store App ->Blank Application. Remove the generated MainPage.xaml, MainPage.cs from the application and add them to the project source code.
 
 4. **Pick a platform** — `Any CPU` in the toolbar (the default). To escape the 32-bit memory ceiling, choose `x64` **and set `Prefer32Bit` to `false`** — otherwise it is still a 32-bit process (see [Known issues](#known-issues--limitations)).
 
