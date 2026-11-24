@@ -4,9 +4,9 @@
 
 
 
-<!-- Once the image is in place, remove the comment markers around this block
+
 <p align="center"><img src="docs/screenshot-main.png" alt="Main screen" width="720"></p>
--->
+
 
 <p align="right"><sub><b>English</b> · <a href="README.zh-CN.md">简体中文</a></sub></p>
 
