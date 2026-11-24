@@ -3,7 +3,7 @@
 > Windows 8 Build 8102（Developer Preview，2011 年）内置相册示例应用 —— 反编译重写版，让它在今天还能跑起来。
 
 <p align="right"><sub><a href="README.md">English</a> · <b>简体中文</b></sub></p>
-
+<p align="center"><img src="docs/Win8.1-screenhost.png" alt="Win8.1 Test Screenshot" width="720"></p>
 
 
 
