@@ -1,0 +1,405 @@
+﻿<UserControl
+    x:Class="MemoriesDemo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MemoriesDemo.Views"
+    xmlns:localHelpers="using:MemoriesDemo.Helpers"
+    xmlns:localTemplates="using:MemoriesDemo.ViewTemplates"
+    xmlns:vsm="using:Windows.UI.Xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="ApplicationBackgroundBrush" Color="#FFE8E8E8"/>
+        <SolidColorBrush x:Key="BodyTextColorBrush" Color="#FF212121"/>
+        <Color x:Key="ScrollBarFillColor">#91D5D5D5</Color>
+        
+        <Style x:Key="HeaderTextStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FFFF7D00"/>
+            <Setter Property="FontSize" Value="55"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="TextWrapping" Value="NoWrap"/>
+            <Setter Property="Margin" Value="30,0,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontFamily" Value="segoeui.ttf#Segoe UI"/>
+        </Style>
+
+        <!-- 删除了 IsEditing 等绑定，解决全屏报错 -->
+        <DataTemplate x:Name="PageTemplate_Scrap_1">
+            <localTemplates:PageTemplate_Scrap_1 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Scrap_2">
+            <localTemplates:PageTemplate_Scrap_2 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Scrap_3">
+            <localTemplates:PageTemplate_Scrap_3 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Scrap_4">
+            <localTemplates:PageTemplate_Scrap_4 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Scrap_5">
+            <localTemplates:PageTemplate_Scrap_5 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Scrap_6">
+            <localTemplates:PageTemplate_Scrap_6 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Scrap_7">
+            <localTemplates:PageTemplate_Scrap_7 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Scrap_8">
+            <localTemplates:PageTemplate_Scrap_8 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Basic_1">
+            <localTemplates:PageTemplate_Basic_1 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Basic_2">
+            <localTemplates:PageTemplate_Basic_2 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Basic_3">
+            <localTemplates:PageTemplate_Basic_3 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Basic_4">
+            <localTemplates:PageTemplate_Basic_4 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Basic_5">
+            <localTemplates:PageTemplate_Basic_5 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Basic_6">
+            <localTemplates:PageTemplate_Basic_6 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Basic_7">
+            <localTemplates:PageTemplate_Basic_7 />
+        </DataTemplate>
+
+        <DataTemplate x:Name="PageTemplate_Scrap_1_REORDER">
+            <localTemplates:PageTemplate_Scrap_1 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Scrap_2_REORDER">
+            <localTemplates:PageTemplate_Scrap_2 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Scrap_3_REORDER">
+            <localTemplates:PageTemplate_Scrap_3 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Scrap_4_REORDER">
+            <localTemplates:PageTemplate_Scrap_4 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Scrap_5_REORDER">
+            <localTemplates:PageTemplate_Scrap_5 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Scrap_6_REORDER">
+            <localTemplates:PageTemplate_Scrap_6 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Scrap_7_REORDER">
+            <localTemplates:PageTemplate_Scrap_7 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Scrap_8_REORDER">
+            <localTemplates:PageTemplate_Scrap_8 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Basic_1_REORDER">
+            <localTemplates:PageTemplate_Basic_1 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Basic_2_REORDER">
+            <localTemplates:PageTemplate_Basic_2 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Basic_3_REORDER">
+            <localTemplates:PageTemplate_Basic_3 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Basic_4_REORDER">
+            <localTemplates:PageTemplate_Basic_4 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Basic_5_REORDER">
+            <localTemplates:PageTemplate_Basic_5 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Basic_6_REORDER">
+            <localTemplates:PageTemplate_Basic_6 />
+        </DataTemplate>
+        <DataTemplate x:Name="PageTemplate_Basic_7_REORDER">
+            <localTemplates:PageTemplate_Basic_7 />
+        </DataTemplate>
+
+        <DataTemplate x:Name="AlbumItemTemplateView">
+            <local:AlbumItemTemplateView />
+        </DataTemplate>
+        <DataTemplate x:Name="AlbumItemTemplateView2">
+            <local:AlbumItemTemplateView2 />
+        </DataTemplate>
+        <DataTemplate x:Name="AlbumItemTemplateView3">
+            <local:AlbumItemTemplateView3 />
+        </DataTemplate>
+        <DataTemplate x:Name="AlbumItemTemplateView4">
+            <local:AlbumItemTemplateView4 />
+        </DataTemplate>
+
+        <Style x:Key="ListViewItemStyle_AlbumGrid"  TargetType="ListViewItem">
+            <Setter Property="FontFamily" Value="segoeui.ttf#Segoe UI" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Height" Value="300" />
+            <Setter Property="Width" Value="350" />
+            <Setter Property="Padding" Value="1" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Background" Value="LightGray" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Bottom" />
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="TabNavigation" Value="Local" />
+        </Style>
+
+        <Style x:Key="HyperlinkButton_LogoStyle" TargetType="HyperlinkButton">
+            <Setter Property="Foreground" Value="#FF212121"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Top"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="HyperlinkButton">
+                        <Grid Background="{TemplateBinding Background}" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver"/>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="1.0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.10" Value="0.9">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <CubicEase EasingMode="EaseIn" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="1.0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.10" Value="0.9">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <CubicEase EasingMode="EaseIn" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Visited"/>
+                                    <VisualState x:Name="Disabled"/>
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.10" From="Pressed" To="Normal" />
+                                    </VisualStateGroup.Transitions>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Focused"/>
+                                    <VisualState x:Name="Unfocused"/>
+                                    <VisualState x:Name="PointerFocused"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="PressedBorder" BorderThickness="2,3,2,3" Opacity="0" Background="Transparent" BorderBrush="#10212121"/>
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                <ContentPresenter.RenderTransform>
+                                    <CompositeTransform CenterX="0.5" CenterY="0.5" />
+                                </ContentPresenter.RenderTransform>
+                            </ContentPresenter>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="PageStates">
+                <VisualState x:Name="CreateAlbumView">
+                    <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="_band" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                            <EasingDoubleKeyFrame KeyTime="0" Value="1350"/>
+                            <EasingDoubleKeyFrame KeyTime="0:0:1.25" Value="1350"/>
+                            <EasingDoubleKeyFrame KeyTime="0:0:1.75" Value="0">
+                                <EasingDoubleKeyFrame.EasingFunction>
+                                    <CubicEase EasingMode="EaseOut" />
+                                </EasingDoubleKeyFrame.EasingFunction>
+                            </EasingDoubleKeyFrame>
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="_band" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                            <EasingDoubleKeyFrame KeyTime="0" Value="-685"/>
+                            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-685"/>
+                            <EasingDoubleKeyFrame KeyTime="0:0:0.75" Value="10">
+                                <EasingDoubleKeyFrame.EasingFunction>
+                                    <CubicEase EasingMode="EaseOut" />
+                                </EasingDoubleKeyFrame.EasingFunction>
+                            </EasingDoubleKeyFrame>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="SnappedStates">
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible" Storyboard.TargetName="_subLayoutRoot">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="False" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible" Storyboard.TargetName="_subLayout_SnappedPanel">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="True" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="_subLayoutRoot">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:1" Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="_subLayout_SnappedPanel">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="_subLayoutRoot" Storyboard.TargetProperty="(UIElement.Opacity)">
+                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                            <EasingDoubleKeyFrame KeyTime="0:0:0.75" Value="0">
+                                <EasingDoubleKeyFrame.EasingFunction>
+                                    <CubicEase EasingMode="EaseOut" />
+                                </EasingDoubleKeyFrame.EasingFunction>
+                            </EasingDoubleKeyFrame>
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="_subLayout_SnappedPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
+                            <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1">
+                                <EasingDoubleKeyFrame.EasingFunction>
+                                    <CubicEase EasingMode="EaseIn" />
+                                </EasingDoubleKeyFrame.EasingFunction>
+                            </EasingDoubleKeyFrame>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="NormalView">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="_subLayoutRoot">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible" Storyboard.TargetName="_subLayoutRoot">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="_subLayout_SnappedPanel">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible" Storyboard.TargetName="_subLayout_SnappedPanel">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="_subLayoutRoot" Storyboard.TargetProperty="(UIElement.Opacity)">
+                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="_subLayout_SnappedPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
+                            <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualStateGroup.Transitions>
+                    <VisualTransition To="NormalView" GeneratedDuration="00:00:00.50" />
+                </VisualStateGroup.Transitions>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+    <Grid x:Name="RootGrid" Background="{StaticResource ApplicationBackgroundBrush}" >
+        
+        
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/Assets/Memories_BG.png"/>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="_subLayoutRoot" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,-80,0,0">
+                <Grid VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
+                    <Rectangle x:Name="_band" Margin="1,1,0,0" Height="115" StrokeThickness="0" Grid.Row="1" Grid.Column="1">
+                        <Rectangle.RenderTransform>
+                            <CompositeTransform />
+                        </Rectangle.RenderTransform>
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="#FF313131"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Grid>
+                <!-- 删除了 Source 属性，解决 394 行报错 -->
+                <Frame x:Name="_frame">
+                    <Frame.ContentTransitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition FromHorizontalOffset="200" />
+                            <ContentThemeTransition HorizontalOffset="200" />
+                        </TransitionCollection>
+                    </Frame.ContentTransitions>
+                </Frame>
+            </Grid>
+
+            <Grid x:Name="_subLayout_SnappedPanel" 
+                  Grid.Row="2" 
+                  HorizontalAlignment="Left" 
+                  VerticalAlignment="Stretch" 
+                  Visibility="Collapsed" 
+                  Background="Transparent">      
+                <ListView x:Name="_listView_Snapped" Margin="5" AllowDrop="False">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <local:AlbumSlideShowView />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemContainerTransitions>
+                        <TransitionCollection>
+                        </TransitionCollection>
+                    </ListView.ItemContainerTransitions>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+            </Grid>
+
+            <StackPanel Orientation="Horizontal">
+                <!-- Logo 完全保留 -->
+                <HyperlinkButton x:Name="_btn_Home" Style="{StaticResource HyperlinkButton_LogoStyle}" Margin="50,26,0,0">
+                    <Viewbox Width="196">
+                        <Canvas Width="196" Height="45">
+                            <Rectangle Width="28.6251" Height="28.625" Canvas.Left="33.938" Canvas.Top="0.664917" Stretch="Fill" Fill="#FF1DA9DC"/>
+                            <Rectangle Width="13.597" Height="13.597" Canvas.Left="48.9664" Canvas.Top="32.6625" Stretch="Fill" Fill="#FFFF7D00"/>
+                            <Rectangle Width="28.5908" Height="13.597" Canvas.Left="16.9502" Canvas.Top="32.6625" Stretch="Fill" Fill="#FF1DA9DC"/>
+                            <Rectangle Width="13.597" Height="13.597" Canvas.Left="0" Canvas.Top="0.665039" Stretch="Fill" Fill="#FFFF7D00"/>
+                            <Rectangle Width="13.597" Height="13.597" Canvas.Left="16.9689" Canvas.Top="15.6978" Stretch="Fill" Fill="#FFFF7D00"/>
+                            <Path Data="M7.3158207,8.1903248 C8.0106192,8.1903248 8.6134596,8.3333721 9.124341,8.6194649 C9.6352215,8.9055586 10.054144,9.3381052 10.381108,9.9171038 C10.857931,9.3381052 11.372218,8.9055586 11.92397,8.6194649 C12.475722,8.3333721 13.064939,8.1903248 13.69162,8.1903248 C14.488594,8.1903248 15.162957,8.3521042 15.714709,8.675662 C16.26646,8.9992208 16.678572,9.4743404 16.951042,10.101021 C17.148582,10.56422 17.247355,11.313513 17.247355,12.348898 L17.247355,19.286667 L14.376201,19.286667 L14.376201,13.084568 C14.3762,12.00831 14.27743,11.313513 14.079889,11.000172 C13.814231,10.591467 13.405526,10.387115 12.853774,10.387115 C12.45188,10.387115 12.073828,10.509727 11.719618,10.754949 C11.365406,11.000173 11.109966,11.359492 10.953296,11.832909 C10.796625,12.306325 10.71829,13.053915 10.71829,14.075678 L10.71829,19.286667 L7.8471375,19.286667 L7.8471375,13.340008 C7.8471375,12.284187 7.7960491,11.603012 7.6938729,11.296483 C7.5916963,10.989955 7.4333229,10.761761 7.2187533,10.611902 C7.0041828,10.462044 6.7129803,10.387115 6.3451462,10.387115 C5.9023819,10.387115 5.5038948,10.506321 5.149684,10.744731 C4.7954726,10.983143 4.5417347,11.327136 4.3884706,11.776711 C4.2352061,12.226287 4.1585741,12.972174 4.1585741,14.014372 L4.1585741,19.286667 L1.287421,19.286667 L1.287421,8.4355478 L3.9337862,8.4355478 L3.9337862,9.9171038 C4.8806195,8.7659178 6.0079641,8.1903248 7.3158207,8.1903248 z M24.420496,10.387115 C23.793816,10.387115 23.276123,10.615309 22.867416,11.071695 C22.458712,11.528083 22.257765,12.147952 22.264576,12.931303 L26.555981,12.931303 C26.535545,12.100269 26.320974,11.468479 25.91227,11.035933 C25.503565,10.603388 25.006306,10.387115 24.420496,10.387115 z M24.246796,8.1903248 C25.861181,8.1903248 27.134979,8.7233448 28.068188,9.7893829 C29.001398,10.855422 29.447567,12.48854 29.406698,14.688735 L22.21349,14.688735 C22.233925,15.540204 22.465523,16.202646 22.908287,16.676064 C23.351051,17.149479 23.902803,17.386189 24.563543,17.386189 C25.013119,17.386189 25.391171,17.263577 25.697701,17.018354 C26.004227,16.77313 26.235828,16.37805 26.392498,15.833109 L29.253433,16.313337 C28.885599,17.362347 28.304897,18.161026 27.511328,18.709372 C26.717758,19.257717 25.724945,19.531891 24.53289,19.531891 C22.646034,19.531891 21.249626,18.915426 20.343662,17.682499 C19.628429,16.694796 19.270813,15.448245 19.270813,13.942848 C19.270813,12.144547 19.740824,10.736217 20.680845,9.7178593 C21.620867,8.6995029 22.809517,8.1903248 24.246796,8.1903248 z M37.559155,8.1903248 C38.253952,8.1903248 38.856792,8.3333721 39.367676,8.6194649 C39.878555,8.9055586 40.297478,9.3381052 40.624443,9.9171038 C41.101265,9.3381052 41.615551,8.9055586 42.167305,8.6194649 C42.719055,8.3333721 43.308273,8.1903248 43.934952,8.1903248 C44.731926,8.1903248 45.406292,8.3521042 45.958042,8.675662 C46.509796,8.9992208 46.921906,9.4743404 47.194374,10.101021 C47.391914,10.56422 47.490688,11.313513 47.490688,12.348898 L47.490688,19.286667 L44.619534,19.286667 L44.619534,13.084568 C44.619534,12.00831 44.520763,11.313513 44.323223,11.000172 C44.057564,10.591467 43.648861,10.387115 43.097107,10.387115 C42.695213,10.387115 42.317162,10.509727 41.962952,10.754949 C41.608742,11.000173 41.353302,11.359492 41.196629,11.832909 C41.039959,12.306325 40.961624,13.053915 40.961624,14.075678 L40.961624,19.286667 L38.090469,19.286667 L38.090469,13.340008 C38.090469,12.284187 38.039383,11.603012 37.937206,11.296483 C37.83503,10.989955 37.676659,10.761761 37.462086,10.611902 C37.247517,10.462044 36.956314,10.387115 36.588478,10.387115 C36.145714,10.387115 35.747231,10.506321 35.393017,10.744731 C35.038807,10.983143 34.785069,11.327136 34.631805,11.776711 C34.478539,12.226287 34.401909,12.972174 34.401909,14.014372 L34.401909,19.286667 L31.530754,19.286667 L31.530754,8.4355478 L34.17712,8.4355478 L34.17712,9.9171038 C35.123955,8.7659178 36.251297,8.1903248 37.559155,8.1903248 z M55.287102,10.530161 C54.537811,10.530161 53.907722,10.816255 53.396843,11.388441 C52.88596,11.960629 52.63052,12.784851 52.63052,13.861107 C52.63052,14.937365 52.88596,15.761586 53.396843,16.333773 C53.907722,16.90596 54.537811,17.192053 55.287102,17.192053 C56.036396,17.192053 56.66478,16.90596 57.172256,16.333773 C57.679729,15.761586 57.933468,14.930552 57.933468,13.840672 C57.933468,12.778039 57.679729,11.960629 57.172256,11.388441 C56.66478,10.816255 56.036396,10.530161 55.287102,10.530161 z M55.276886,8.1903248 C56.918518,8.1903248 58.26384,8.7233448 59.312847,9.7893829 C60.361858,10.855422 60.88636,12.202446 60.886364,13.830454 C60.88636,15.472086 60.35675,16.832733 59.297523,17.912395 C58.238297,18.992058 56.904892,19.531891 55.297321,19.531891 C54.302803,19.531891 53.354267,19.307102 52.451714,18.857527 C51.549156,18.407951 50.862869,17.748915 50.39286,16.880417 C49.922848,16.011917 49.687843,14.954393 49.687843,13.707843 C49.687843,12.754198 49.922848,11.831205 50.39286,10.938866 C50.862869,10.046527 51.528721,9.3653517 52.390408,8.8953409 C53.25209,8.4253302 54.214252,8.1903248 55.276886,8.1903248 z M68.152184,8.1903248 C68.806107,8.1903248 69.436195,8.3708363 70.042442,8.7318583 L69.153511,11.235177 C68.669876,10.921837 68.220299,10.765166 67.804779,10.765166 C67.402885,10.765166 67.062302,10.875857 66.78302,11.097239 C66.503738,11.318622 66.284058,11.718812 66.123985,12.29781 C65.963905,12.876809 65.883865,14.089301 65.883865,15.935286 L65.883865,19.286667 L63.012714,19.286667 L63.012714,8.4355478 L65.679512,8.4355478 L65.679512,9.9784088 C66.135902,9.2495518 66.54631,8.7693233 66.910736,8.5377235 C67.275169,8.3061247 67.68898,8.1903248 68.152184,8.1903248 z M71.278656,8.4355478 L74.149811,8.4355478 L74.149811,19.286667 L71.278656,19.286667 z M71.278656,4.3076267 L74.149811,4.3076267 L74.149811,6.9642096 L71.278656,6.9642096 z M81.403824,10.387115 C80.777145,10.387115 80.259453,10.615309 79.850746,11.071695 C79.442039,11.528083 79.241096,12.147952 79.24791,12.931303 L83.539307,12.931303 C83.518875,12.100269 83.304306,11.468479 82.895599,11.035933 C82.486893,10.603388 81.989639,10.387115 81.403824,10.387115 z M81.230125,8.1903248 C82.844513,8.1903248 84.118309,8.7233448 85.051521,9.7893829 C85.984726,10.855422 86.430901,12.48854 86.39003,14.688735 L79.196815,14.688735 C79.217255,15.540204 79.448853,16.202646 79.891617,16.676064 C80.334381,17.149479 80.886131,17.386189 81.546875,17.386189 C81.996445,17.386189 82.374496,17.263577 82.68103,17.018354 C82.987556,16.77313 83.219154,16.37805 83.375824,15.833109 L86.236763,16.313337 C85.868927,17.362347 85.288223,18.161026 84.494659,18.709372 C83.701088,19.257717 82.708275,19.531891 81.51622,19.531891 C79.629364,19.531891 78.232956,18.915426 77.326996,17.682499 C76.611755,16.694796 76.254143,15.448245 76.254143,13.942848 C76.254143,12.144547 76.724152,10.736217 77.664177,9.7178593 C78.604195,8.6995029 79.792847,8.1903248 81.230125,8.1903248 z M92.682884,8.1903248 C94.167847,8.1903248 95.271347,8.4321423 95.993393,8.9157763 C96.715439,9.3994102 97.212692,10.114645 97.485168,11.061478 L94.777496,11.562141 C94.661697,11.139812 94.442017,10.816255 94.118462,10.591467 C93.794899,10.366679 93.333405,10.254285 92.733971,10.254285 C91.977867,10.254285 91.436333,10.359867 91.109367,10.571032 C90.891388,10.72089 90.782402,10.915025 90.782402,11.153436 C90.782402,11.357788 90.877769,11.531488 91.068497,11.674536 C91.327347,11.865265 92.22139,12.134329 93.750626,12.481728 C95.279861,12.829127 96.347603,13.254862 96.95385,13.75893 C97.553284,14.269812 97.852997,14.98164 97.852997,15.894415 C97.852997,16.888931 97.437485,17.743805 96.606453,18.45904 C95.775421,19.174273 94.545898,19.531891 92.917885,19.531891 C91.439735,19.531891 90.269821,19.232172 89.408134,18.632738 C88.546448,18.033304 87.982773,17.219301 87.717117,16.190725 L90.598488,15.751368 C90.7211,16.309933 90.969727,16.733963 91.344376,17.023462 C91.719017,17.312962 92.243523,17.457712 92.917885,17.457712 C93.66037,17.457712 94.218933,17.321476 94.593575,17.049007 C94.845612,16.858278 94.971626,16.602837 94.971634,16.282684 C94.971626,16.064709 94.903511,15.884197 94.767281,15.74115 C94.624229,15.604916 94.304077,15.478898 93.806824,15.363098 C91.490829,14.852217 90.022896,14.385612 89.403023,13.963284 C88.544746,13.377473 88.115601,12.563469 88.115601,11.521271 C88.115601,10.581249 88.486847,9.7910862 89.229324,9.1507816 C89.971802,8.5104771 91.122993,8.1903248 92.682884,8.1903248 z" Height="15.224" Canvas.Left="93.788" RenderTransformOrigin="0.5,0.5" Stretch="Fill" Canvas.Top="2.093" UseLayoutRounding="False" Width="96.565">
+                                <Path.Fill>
+                                    <SolidColorBrush Color="#FF454545">
+                                        <SolidColorBrush.RelativeTransform>
+                                            <MatrixTransform Matrix="Identity"/>
+                                        </SolidColorBrush.RelativeTransform>
+                                        <SolidColorBrush.Transform>
+                                            <MatrixTransform Matrix="Identity"/>
+                                        </SolidColorBrush.Transform>
+                                    </SolidColorBrush>
+                                </Path.Fill>
+                                <Path.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleY="1.33333" ScaleX="1.33333"/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform X="0" Y="0"/>
+                                    </TransformGroup>
+                                </Path.RenderTransform>
+                            </Path>
+                            <Path Data="M1.4055918,2.7273045 L2.6179979,2.7273045 L3.8037579,7.1239429 C3.8348451,7.2260871 3.8603811,7.3293414 3.8803661,7.4337058 C3.9003506,7.5380707 3.9170046,7.6257811 3.9303277,7.6968379 L3.943651,7.6968379 C3.9791791,7.6257811 4.0280304,7.5402908 4.0902057,7.4403672 C4.15238,7.3404436 4.2167749,7.2394099 4.283391,7.1372657 L7.4609613,2.7273045 L8.746645,2.7273045 L4.3366838,8.6494427 L3.5772645,12.28 L2.431474,12.28 L3.1908932,8.6760893 z M11.736806,6.2246304 C11.345993,6.2246308 10.99293,6.3245544 10.677616,6.5244012 C10.362301,6.7242489 10.095839,6.987381 9.8782272,7.3137975 C9.6606159,7.6402149 9.4929657,8.0110416 9.3752785,8.42628 C9.2575903,8.8415184 9.1987467,9.2667484 9.1987467,9.7019711 C9.1987467,9.9773159 9.2331648,10.227125 9.302001,10.451398 C9.3708372,10.675671 9.4685402,10.866636 9.5951099,11.024293 C9.7216797,11.181951 9.8771172,11.302969 10.06142,11.387349 C10.245724,11.471729 10.453342,11.513919 10.684278,11.513919 C11.079531,11.513919 11.434814,11.415106 11.75013,11.217479 C12.065443,11.019853 12.331906,10.757831 12.549518,10.431414 C12.767129,10.104996 12.933668,9.7330589 13.049135,9.3155994 C13.164602,8.8981419 13.222336,8.4718008 13.222337,8.0365782 C13.222336,7.74791 13.186808,7.4914393 13.115751,7.2671666 C13.044695,7.0428934 12.944771,6.8541489 12.815981,6.700933 C12.68719,6.5477171 12.531754,6.4300289 12.34967,6.3478694 C12.167587,6.2657104 11.963299,6.2246308 11.736806,6.2246304 z M11.790098,5.2920103 C12.17647,5.2920103 12.526202,5.3541851 12.839296,5.4785342 C13.15239,5.6028838 13.419963,5.7816362 13.642015,6.014791 C13.864067,6.2479458 14.036158,6.5299525 14.158287,6.8608103 C14.280416,7.1916685 14.34148,7.5658274 14.34148,7.9832854 C14.34148,8.5872679 14.255991,9.1601639 14.085011,9.7019711 C13.91403,10.243779 13.667551,10.717861 13.345575,11.124217 C13.0236,11.530573 12.632788,11.852549 12.17314,12.090145 C11.71349,12.327741 11.194998,12.446539 10.617661,12.446539 C10.22685,12.446539 9.874896,12.384364 9.5618019,12.260015 C9.2487087,12.135666 8.9822454,11.956913 8.762414,11.723759 C8.5425816,11.490603 8.3738222,11.208597 8.256134,10.877739 C8.1384468,10.546881 8.0796022,10.172722 8.0796022,9.7552643 C8.0796022,9.129076 8.1695337,8.5439682 8.3493967,7.9999394 C8.5292587,7.4559112 8.7823982,6.9829397 9.1088152,6.5810246 C9.4352322,6.1791096 9.826045,5.8637953 10.281252,5.6350813 C10.73646,5.4063673 11.239408,5.2920103 11.790098,5.2920103 z M16.538715,5.4585495 L17.644537,5.4585495 L16.798517,9.455493 C16.780752,9.5265503 16.762989,9.6087093 16.745224,9.7019711 C16.727461,9.7952328 16.710806,9.8884954 16.695263,9.9817572 C16.67972,10.07502 16.667507,10.160509 16.658625,10.238228 C16.649742,10.315947 16.645302,10.37701 16.645302,10.421421 C16.645302,10.754499 16.726351,11.019853 16.888449,11.217479 C17.050547,11.415106 17.293694,11.513919 17.617891,11.513919 C17.813297,11.513919 18.008703,11.473949 18.204109,11.394011 C18.399515,11.314072 18.589371,11.206376 18.773674,11.070925 C18.957977,10.935472 19.132288,10.777815 19.296608,10.597953 C19.460926,10.418091 19.609701,10.227125 19.742931,10.025058 C19.876163,9.8229895 19.98941,9.6153708 20.082672,9.4022007 C20.175934,9.1890297 20.24477,8.9847422 20.289181,8.7893353 L21.001968,5.4585495 L22.10113,5.4585495 L21.055262,10.341482 C21.015293,10.514683 20.978653,10.694546 20.945347,10.881069 C20.912039,11.067594 20.879841,11.247456 20.848753,11.420657 C20.817665,11.593858 20.791019,11.755956 20.768814,11.906952 C20.746609,12.057947 20.728844,12.182297 20.715523,12.28 L19.64967,12.28 C19.671875,12.106799 19.697411,11.925826 19.726278,11.737082 C19.755146,11.548337 19.782902,11.374026 19.809547,11.214149 C19.840635,11.027624 19.869503,10.845541 19.896149,10.667899 L19.869503,10.667899 C19.714066,10.912157 19.541975,11.141981 19.35323,11.357372 C19.164486,11.572762 18.960197,11.761507 18.740366,11.923606 C18.520535,12.085704 18.287378,12.213384 18.040901,12.306646 C17.794422,12.399908 17.537952,12.446539 17.271488,12.446539 C16.97838,12.446539 16.721909,12.401018 16.502077,12.309977 C16.282246,12.218935 16.099052,12.091255 15.952497,11.926936 C15.805943,11.762617 15.696027,11.564991 15.622749,11.334057 C15.549473,11.103122 15.512834,10.845541 15.512834,10.561314 C15.512834,10.50358 15.521716,10.41698 15.53948,10.301513 C15.557244,10.186046 15.577229,10.061696 15.599434,9.9284649 C15.621639,9.7952328 15.647176,9.6631126 15.676043,9.5321007 C15.704909,9.4010906 15.728225,9.2889538 15.745989,9.1956921 z M27.069818,5.2920103 C27.194168,5.2920103 27.317406,5.3042231 27.439535,5.328649 C27.561665,5.353075 27.671581,5.3786106 27.769283,5.4052567 L27.576097,6.6176629 L27.549452,6.6176629 C27.46063,6.5643702 27.344053,6.512188 27.199718,6.4611163 C27.055386,6.4100447 26.912161,6.3845081 26.770048,6.3845081 C26.512466,6.3845081 26.265989,6.4677782 26.030613,6.6343169 C25.795238,6.8008566 25.580957,7.0206885 25.387772,7.2938128 C25.194586,7.5669374 25.025826,7.8789206 24.881493,8.229763 C24.737158,8.5806065 24.625021,8.9403315 24.545082,9.308939 L23.905571,12.28 L22.813074,12.28 L23.772341,7.7501307 C23.812309,7.5636067 23.85228,7.3682003 23.892248,7.1639118 C23.932219,6.9596238 23.968857,6.7553358 24.002165,6.5510473 C24.035473,6.3467593 24.065449,6.1513529 24.092096,5.964829 C24.118742,5.7783051 24.138727,5.6095457 24.15205,5.4585495 L25.231224,5.4585495 C25.217901,5.5917816 25.202358,5.7327847 25.184593,5.8815594 C25.166828,6.0303349 25.149065,6.1746688 25.1313,6.3145614 C25.113537,6.4544549 25.095772,6.5810246 25.078009,6.6942711 C25.060244,6.807518 25.046921,6.8952289 25.038038,6.9574032 L25.064686,6.9574032 C25.206799,6.7042637 25.351133,6.4755497 25.497688,6.2712612 C25.644241,6.0669732 25.798569,5.892662 25.960667,5.7483277 C26.122765,5.6039939 26.294855,5.4918575 26.476938,5.4119186 C26.659021,5.3319798 26.856647,5.2920103 27.069818,5.2920103 z M33.578079,2.7273045 L34.737194,2.7273045 L32.925247,11.240794 L36.729004,11.240794 L36.509171,12.28 L31.559624,12.28 z M39.155312,5.4585495 L40.261135,5.4585495 L39.261898,10.208251 C39.221928,10.394774 39.194172,10.539108 39.178627,10.641253 C39.163086,10.743397 39.155312,10.829998 39.155312,10.901054 C39.155312,11.083138 39.205276,11.22192 39.305199,11.317403 C39.405121,11.412885 39.563889,11.460627 39.781502,11.460627 C39.896969,11.460627 39.998001,11.453965 40.084602,11.440641 C40.171204,11.427319 40.252251,11.407333 40.327751,11.380688 L40.154549,12.253353 C40.043522,12.288882 39.918064,12.317749 39.778172,12.339953 C39.638279,12.362159 39.499496,12.373261 39.361824,12.373261 C38.913277,12.373261 38.577976,12.261126 38.355927,12.036852 C38.133873,11.812579 38.022846,11.511699 38.022846,11.13421 C38.022846,11.023183 38.033947,10.892172 38.056152,10.741177 C38.078358,10.590181 38.113888,10.403657 38.162739,10.181604 z M40.227825,2.3342724 C40.423233,2.3342724 40.589771,2.3997774 40.727444,2.5307884 C40.865116,2.6617994 40.933952,2.8272285 40.933952,3.0270758 C40.933952,3.226923 40.866226,3.3979034 40.730774,3.5400162 C40.595322,3.6821308 40.427673,3.7531881 40.227825,3.7531872 C40.032421,3.7531881 39.862549,3.6832409 39.718216,3.5433474 C39.573883,3.4034548 39.501717,3.2313643 39.501717,3.0270758 C39.501717,2.8227873 39.573883,2.6562481 39.718216,2.5274572 C39.862549,2.3986673 40.032421,2.3342724 40.227825,2.3342724 z M45.689682,2.0211782 C45.854,2.0211782 46.014988,2.034502 46.172646,2.0611477 C46.330303,2.0877943 46.464645,2.1188822 46.575672,2.1544094 L46.395809,3.1269989 C46.351398,3.1047935 46.298103,3.0836992 46.235931,3.063714 C46.173756,3.0437298 46.10714,3.0248556 46.036083,3.0070906 C45.965027,2.9893274 45.89064,2.9748945 45.81292,2.9637909 C45.735203,2.9526892 45.660812,2.9471369 45.58976,2.9471369 C45.225594,2.9471369 44.944695,3.0659351 44.74707,3.3035307 C44.549442,3.5411272 44.399555,3.8953009 44.297413,4.3660517 L44.050934,5.4585495 L45.663036,5.4585495 L45.443203,6.3845081 L43.831104,6.3845081 L42.08577,14.544934 L40.97995,14.544934 L42.738605,6.3845081 L41.56617,6.3845081 L41.772678,5.4585495 L42.945114,5.4585495 L43.218239,4.1928511 C43.302616,3.8020391 43.420307,3.4689598 43.571301,3.193615 C43.722298,2.9182701 43.902161,2.6939974 44.110889,2.5207958 C44.319618,2.3475962 44.556103,2.2210264 44.820347,2.1410866 C45.084587,2.0611486 45.374367,2.0211782 45.689682,2.0211782 z M49.073505,6.2246304 C48.802601,6.2246308 48.540581,6.2834749 48.287437,6.4011621 C48.034298,6.5188498 47.801144,6.6809483 47.587975,6.8874569 C47.374805,7.0939655 47.190498,7.3404436 47.035065,7.6268911 C46.879627,7.9133391 46.76638,8.2231026 46.695324,8.556181 C47.330395,8.556181 47.86998,8.523983 48.314087,8.4595881 C48.75819,8.3951931 49.120136,8.3008204 49.399921,8.1764717 C49.679707,8.0521221 49.883995,7.9000158 50.012787,7.7201533 C50.141579,7.5402913 50.205971,7.3371134 50.205971,7.1106195 C50.205971,6.8308334 50.102718,6.6132221 49.89621,6.4577856 C49.689701,6.3023491 49.415466,6.2246308 49.073505,6.2246304 z M49.166767,5.2920103 C49.517609,5.2920103 49.827374,5.3386412 50.096058,5.4319034 C50.364738,5.5251656 50.589012,5.6528459 50.768875,5.8149438 C50.948738,5.9770422 51.0853,6.1646767 51.178562,6.3778467 C51.271824,6.5910168 51.318455,6.8175106 51.318455,7.0573268 C51.318455,7.4170523 51.238514,7.7445793 51.078636,8.0399094 C50.918762,8.3352385 50.654518,8.5883789 50.285912,8.7993279 C49.917305,9.0102777 49.431007,9.1734867 48.827026,9.2889538 C48.223045,9.4044209 47.476948,9.4643755 46.588737,9.4688158 C46.579857,9.5176678 46.575417,9.5687399 46.575417,9.6220322 C46.575417,9.6708841 46.575417,9.7152939 46.575417,9.7552643 C46.575417,9.9950809 46.608723,10.221574 46.675339,10.434744 C46.741955,10.647915 46.845207,10.834438 46.985104,10.994316 C47.124996,11.154194 47.304855,11.280764 47.524689,11.374026 C47.744522,11.467288 48.005432,11.513919 48.307423,11.513919 C48.613857,11.513919 48.950264,11.455075 49.31665,11.337387 C49.683037,11.2197 50.032772,11.05205 50.365849,10.834438 L50.15934,11.913613 C49.915085,12.055727 49.624195,12.180077 49.286674,12.286661 C48.949158,12.393247 48.571667,12.446539 48.154209,12.446539 C47.65237,12.446539 47.229359,12.368821 46.885178,12.213384 C46.540997,12.057947 46.263432,11.850328 46.052483,11.590527 C45.841534,11.330726 45.689426,11.030954 45.596165,10.691215 C45.502903,10.351475 45.456272,9.9950809 45.456272,9.6220322 C45.456272,9.2223377 45.500683,8.8370771 45.589504,8.4662495 C45.678322,8.0954218 45.803783,7.7501307 45.965881,7.4303751 C46.127979,7.1106195 46.322277,6.8186207 46.548767,6.554378 C46.775261,6.2901359 47.02618,6.0647526 47.301525,5.8782287 C47.57687,5.6917048 47.8722,5.5473709 48.187515,5.4452262 C48.502831,5.3430824 48.829247,5.2920103 49.166767,5.2920103 z M57.891373,7.8300695 L57.185246,11.267441 L58.724072,11.267441 C59.141529,11.267441 59.501251,11.22192 59.803246,11.130878 C60.105236,11.039837 60.355045,10.909936 60.552673,10.741177 C60.750298,10.572416 60.896851,10.369239 60.992336,10.131642 C61.087818,9.8940468 61.135559,9.6286945 61.135559,9.3355846 C61.135559,8.8692741 60.973461,8.5017776 60.649265,8.2330942 C60.325066,7.9644113 59.827671,7.8300695 59.157074,7.8300695 z M58.777363,3.7398634 L58.111206,6.824172 L59.363579,6.824172 C59.74551,6.824172 60.0797,6.7797618 60.366146,6.6909404 C60.652596,6.6021194 60.89019,6.4777703 61.078934,6.3178926 C61.267681,6.1580153 61.408684,5.9670501 61.501945,5.744997 C61.595207,5.5229449 61.641838,5.2764668 61.641838,5.0055628 L61.655163,5.0055628 C61.655163,4.836803 61.628517,4.6769252 61.575222,4.5259295 C61.521931,4.3749342 61.43644,4.240592 61.318752,4.1229038 C61.201065,4.0052166 61.047848,3.9119549 60.859104,3.8431177 C60.670357,3.7742815 60.440536,3.7398634 60.169632,3.7398634 z M57.838081,2.7273045 L60.469402,2.7273045 C60.851334,2.7273054 61.18885,2.7805977 61.48196,2.8871822 C61.77507,2.9937677 62.021549,3.1403227 62.221397,3.3268461 C62.421242,3.5133705 62.572239,3.7320919 62.674381,3.9830112 C62.776527,4.2339306 62.827599,4.5037246 62.827599,4.7923923 C62.827599,5.0899429 62.785408,5.3752804 62.701027,5.6484041 C62.61665,5.9215288 62.486748,6.1691175 62.311325,6.3911695 C62.135906,6.6132221 61.911633,6.8052979 61.638508,6.9673958 C61.365383,7.1294942 61.040077,7.2460718 60.662586,7.3171282 L60.662586,7.3437743 C60.937931,7.388185 61.17886,7.4692345 61.385368,7.5869217 C61.591877,7.7046099 61.763969,7.8478336 61.901642,8.0165939 C62.039314,8.1853533 62.142567,8.3752079 62.211403,8.5861578 C62.280239,8.7971077 62.314659,9.0224905 62.314659,9.2623072 C62.314659,9.7552643 62.224724,10.189377 62.044865,10.564645 C61.865002,10.939914 61.615192,11.254118 61.295437,11.507257 C60.975681,11.760397 60.59708,11.952473 60.159637,12.083484 C59.722195,12.214495 59.248112,12.28 58.737392,12.28 L55.819626,12.28 z M67.323471,6.2246304 C66.932663,6.2246308 66.579597,6.3245544 66.264282,6.5244012 C65.948967,6.7242489 65.682503,6.987381 65.464897,7.3137975 C65.247284,7.6402149 65.079636,8.0110416 64.961945,8.42628 C64.844261,8.8415184 64.785416,9.2667484 64.785416,9.7019711 C64.785416,9.9773159 64.819832,10.227125 64.888672,10.451398 C64.957504,10.675671 65.055206,10.866636 65.181778,11.024293 C65.30835,11.181951 65.463783,11.302969 65.648087,11.387349 C65.83239,11.471729 66.040009,11.513919 66.270943,11.513919 C66.666199,11.513919 67.021484,11.415106 67.3368,11.217479 C67.652115,11.019853 67.918571,10.757831 68.136185,10.431414 C68.353798,10.104996 68.520332,9.7330589 68.635803,9.3155994 C68.751266,8.8981419 68.809006,8.4718008 68.809006,8.0365782 C68.809006,7.74791 68.773476,7.4914393 68.702415,7.2671666 C68.631363,7.0428934 68.531441,6.8541489 68.402649,6.700933 C68.273857,6.5477171 68.118423,6.4300289 67.93634,6.3478694 C67.754257,6.2657104 67.549965,6.2246308 67.323471,6.2246304 z M67.37677,5.2920103 C67.763138,5.2920103 68.112869,5.3541851 68.425964,5.4785342 C68.739059,5.6028838 69.00663,5.7816362 69.228683,6.014791 C69.450737,6.2479458 69.622826,6.5299525 69.744957,6.8608103 C69.867081,7.1916685 69.928146,7.5658274 69.928146,7.9832854 C69.928146,8.5872679 69.842659,9.1601639 69.671677,9.7019711 C69.500694,10.243779 69.254219,10.717861 68.932243,11.124217 C68.610268,11.530573 68.219452,11.852549 67.759804,12.090145 C67.300156,12.327741 66.781662,12.446539 66.20433,12.446539 C65.813515,12.446539 65.461563,12.384364 65.148468,12.260015 C64.835373,12.135666 64.568916,11.956913 64.349083,11.723759 C64.12925,11.490603 63.960491,11.208597 63.8428,10.877739 C63.725113,10.546881 63.666271,10.172722 63.666271,9.7552643 C63.666271,9.129076 63.756203,8.5439682 63.936066,7.9999394 C64.115929,7.4559112 64.369064,6.9829397 64.69548,6.5810246 C65.021896,6.1791096 65.412712,5.8637953 65.86792,5.6350813 C66.323128,5.4063673 66.826073,5.2920103 67.37677,5.2920103 z M74.623466,6.2246304 C74.232658,6.2246308 73.879593,6.3245544 73.564278,6.5244012 C73.248962,6.7242489 72.982498,6.987381 72.764893,7.3137975 C72.547279,7.6402149 72.379631,8.0110416 72.26194,8.42628 C72.144257,8.8415184 72.085411,9.2667484 72.085411,9.7019711 C72.085411,9.9773159 72.119827,10.227125 72.188667,10.451398 C72.2575,10.675671 72.355202,10.866636 72.481773,11.024293 C72.608345,11.181951 72.763779,11.302969 72.948082,11.387349 C73.132385,11.471729 73.340004,11.513919 73.570938,11.513919 C73.966194,11.513919 74.32148,11.415106 74.636795,11.217479 C74.952103,11.019853 75.218567,10.757831 75.43618,10.431414 C75.653793,10.104996 75.820328,9.7330589 75.935799,9.3155994 C76.05127,8.8981419 76.109001,8.4718008 76.109001,8.0365782 C76.109001,7.74791 76.073471,7.4914393 76.002411,7.2671666 C75.931358,7.0428934 75.831436,6.8541489 75.702644,6.700933 C75.573853,6.5477171 75.418419,6.4300289 75.236336,6.3478694 C75.054253,6.2657104 74.84996,6.2246308 74.623466,6.2246304 z M74.676758,5.2920103 C75.063133,5.2920103 75.412865,5.3541851 75.72596,5.4785342 C76.039055,5.6028838 76.306625,5.7816362 76.528679,6.014791 C76.750732,6.2479458 76.922821,6.5299525 77.044952,6.8608103 C77.167076,7.1916685 77.228142,7.5658274 77.228142,7.9832854 C77.228142,8.5872679 77.142654,9.1601639 76.971672,9.7019711 C76.80069,10.243779 76.554214,10.717861 76.232239,11.124217 C75.910263,11.530573 75.519447,11.852549 75.059799,12.090145 C74.600151,12.327741 74.081657,12.446539 73.504326,12.446539 C73.11351,12.446539 72.761559,12.384364 72.448463,12.260015 C72.135368,12.135666 71.868912,11.956913 71.649078,11.723759 C71.429245,11.490603 71.260483,11.208597 71.142799,10.877739 C71.025108,10.546881 70.966263,10.172722 70.966263,9.7552643 C70.966263,9.129076 71.056198,8.5439682 71.236061,7.9999394 C71.415924,7.4559112 71.66906,6.9829397 71.995476,6.5810246 C72.321899,6.1791096 72.712708,5.8637953 73.167915,5.6350813 C73.623123,5.4063673 74.126068,5.2920103 74.676758,5.2920103 z M80.23143,2.181056 L81.323929,2.181056 L80.011597,8.3496723 L80.038246,8.3496723 L83.435646,5.4585495 L84.854561,5.4585495 L81.064133,8.6094732 L83.475616,12.28 L82.209923,12.28 L79.971634,8.6760893 L79.944984,8.6760893 L79.178902,12.28 L78.073082,12.28 z" Height="12.524" Canvas.Left="132.148" RenderTransformOrigin="0.5,0.5" Stretch="Fill" Canvas.Top="29.393" UseLayoutRounding="False" Width="97.887">
+                                <Path.Fill>
+                                    <SolidColorBrush Color="#FF454545">
+                                        <SolidColorBrush.RelativeTransform>
+                                            <MatrixTransform Matrix="Identity"/>
+                                        </SolidColorBrush.RelativeTransform>
+                                        <SolidColorBrush.Transform>
+                                            <MatrixTransform Matrix="Identity"/>
+                                        </SolidColorBrush.Transform>
+                                    </SolidColorBrush>
+                                </Path.Fill>
+                                <Path.RenderTransform>
+                                    <CompositeTransform ScaleY="1.333" ScaleX="1.333" TranslateX="0" TranslateY="0"/>
+                                </Path.RenderTransform>
+                            </Path>
+                        </Canvas>
+                    </Viewbox>
+                </HyperlinkButton>
+                <TextBlock x:Name="_tb_DEBUG" Visibility="Collapsed" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

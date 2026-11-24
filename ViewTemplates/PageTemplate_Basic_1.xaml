@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="MemoriesDemo.ViewTemplates.PageTemplate_Basic_1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="700" d:DesignWidth="700">
+    <UserControl.Resources>
+
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid x:Name="_layoutRoot" Margin="0,0,0,0">
+            <Viewbox>
+                <Grid Background="Transparent" Margin="0" Width="700" Height="700">
+                    <Rectangle Stretch="Fill" Fill="#FFFF7D00"/>
+                    <Grid x:Name="_1_tb_Desc"
+                      Width="400"
+                      Margin="60,0,60,249" 
+                      Height="88"
+                      VerticalAlignment="Bottom"
+                      HorizontalAlignment="Left">
+                        <Grid.Tag>
+                            <TextBlock Foreground="White" FontSize="77" Width="400" TextWrapping="NoWrap" />
+                        </Grid.Tag>
+                    </Grid>
+                    <Grid x:Name="_2_tb_Desc"
+                         Margin="60,0,60,165" 
+                         VerticalAlignment="Bottom" 
+                         HorizontalAlignment="Left">
+                        <Grid.Tag>
+                            <TextBlock Foreground="White" FontSize="41" Width="300" TextWrapping="Wrap" />
+                        </Grid.Tag>
+                    </Grid>
+                    <Grid x:Name="_3_tb_Desc"
+                         Margin="60,0,60,54"
+                         VerticalAlignment="Bottom" 
+                         HorizontalAlignment="Left">
+                        <Grid.Tag>
+                            <TextBlock Foreground="#FF3B1D00" FontSize="24" Width="400" TextWrapping="Wrap" />
+                        </Grid.Tag>
+                    </Grid>
+                </Grid>
+            </Viewbox>
+        </Grid>
+
+        <Canvas x:Name="_propsView" />
+        <Canvas x:Name="_canvas_LargeView" Background="Transparent" IsHitTestVisible="False" />
+    </Grid>
+</UserControl>
+

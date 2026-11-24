@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application
+    x:Class="MemoriesDemo.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <!-- 视频播放按钮：圆形半透明白底 + 深灰三角。
+                 该样式原本定义在已丢失的 App.xaml 里，MediaPageItemView.xaml 第 99 行
+                 通过 {StaticResource ButtonStyle_Play} 引用；缺失时页面一加载就抛
+                 XamlParseException（Cannot find a Resource with the Name/Key ButtonStyle_Play）。 -->
+            <Style x:Key="ButtonStyle_Play" TargetType="Button">
+                <Setter Property="Width" Value="84"/>
+                <Setter Property="Height" Value="84"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid Background="Transparent">
+                                <Ellipse x:Name="ring" Width="84" Height="84" Fill="#B3FFFFFF"/>
+                                <Path x:Name="glyph" Data="M 32,25 L 61,42 L 32,59 Z"
+                                      Fill="#FF313131"
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal"/>
+                                        <VisualState x:Name="MouseOver">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="ring"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 Duration="0:0:0.15" To="0.6"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="ring"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 Duration="0" To="0.4"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Disabled">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="ring"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 Duration="0" To="0.2"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

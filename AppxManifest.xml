@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="Microsoft.Memories" Publisher="CN=RootExplorer" Version="1.0.60819.0" ProcessorArchitecture="x64" />
+  <Properties>
+    <DisplayName>Microsoft.Memories</DisplayName>
+    <PublisherDisplayName>Microsoft Corporation</PublisherDisplayName>
+    <Logo>Images\StoreLogo.png</Logo>
+    <Description>A digital book of your memories</Description>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2</OSMinVersion>
+    <OSMaxVersionTested>6.2</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="en-us" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="App1.exe" EntryPoint="MemoriesDemo.App">
+      <VisualElements DisplayName="Memories" Logo="Images\150Tile.png" SmallLogo="Images\30Tile.png" Description="Memories" ForegroundText="light" BackgroundColor="#E8E8E8" >
+        <DefaultTile ShortName="Memories" ShowName="allLogos" WideLogo="Images\310Tile.png" />
+        <SplashScreen Image="Images\MemoriesSplash01.png" />
+      </VisualElements>
+      <Extensions>
+        <Extension Category="windows.search" Executable="App1.exe" EntryPoint="MemoriesDemo.App" />
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="musicLibrary" />
+    <Capability Name="picturesLibrary" />
+    <Capability Name="videosLibrary" />
+    <DeviceCapability Name="microphone" />
+    <DeviceCapability Name="webcam" />
+  </Capabilities>
+</Package>

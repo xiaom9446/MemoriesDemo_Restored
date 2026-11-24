@@ -1,0 +1,327 @@
+<Page x:Class="MemoriesDemo.Views.SearchResultsView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:MemoriesDemo.Views"
+      xmlns:helpers="using:MemoriesDemo.Helpers">
+
+    <Page.Resources>
+        <helpers:DateConverter x:Key="DateConverter"/>
+
+        <Storyboard x:Name="sb_TransitionIn">
+            <DoubleAnimation From="0" To="1" Duration="0:0:0.5"
+                             Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Opacity">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseIn"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Name="sb_TransitionOut">
+            <DoubleAnimation From="1" To="0" Duration="0:0:0.10"
+                             Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Opacity">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseIn"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <SolidColorBrush x:Key="ListViewItemHighlightBrush" Color="#FF26A0DA"/>
+        <SolidColorBrush x:Key="ListViewItemMouseOverBrush" Color="#FF555555"/>
+        <SolidColorBrush x:Key="ListViewItemSemiTransparentHighlightBrush" Color="#9926A0DA"/>
+        <SolidColorBrush x:Key="ListViewItemVeryTransparentHighlightBrush" Color="#7F26A0DA"/>
+        <SolidColorBrush x:Key="ListViewItemSelectedMouseOverBrush" Color="#FF5AB7E3"/>
+
+        <Style x:Key="SelectedItemCountStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="56"/>
+            <Setter Property="FontFamily" Value="Segoe UI Semilight"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="Margin" Value="12,0,0,0"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextTrimming" Value="WordEllipsis"/>
+        </Style>
+
+        <Style x:Key="ListViewItemStyle_Album" TargetType="ListViewItem">
+            <Setter Property="Foreground" Value="#FFFFFFFF"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Viewbox Stretch="Fill">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="MouseOverBorder"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             Duration="0" To="1"/>
+                                            <DoubleAnimation Duration="0:0:0.3" To="1"
+                                                             Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                             Storyboard.TargetName="mouseOverGlow"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="contentPresenter"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             Duration="0" To=".55"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualState x:Name="Selected">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="SelectedBorder"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             Duration="0" To="1"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unselected"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <Grid x:Name="OuterContainer">
+                                <Grid x:Name="ReorderHintContent">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid x:Name="ContentContainer" Margin="20,5,0,5">
+                                        <Grid x:Name="InnerDragContent">
+                                            <Border x:Name="ContentBorder"
+                                                    Background="{TemplateBinding Background}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                                <Grid>
+                                                    <ContentPresenter x:Name="contentPresenter"
+                                                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                                      Content="{TemplateBinding Content}"
+                                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                                      Margin="{TemplateBinding Padding}"/>
+                                                    <Border x:Name="MouseOverBorder"
+                                                            IsHitTestVisible="False" Opacity="0"
+                                                            BorderBrush="Transparent" BorderThickness="2"/>
+                                                    <Border x:Name="SelectedBorder"
+                                                            IsHitTestVisible="False" Opacity="0"
+                                                            BorderBrush="#FFFF7D00" BorderThickness="2"/>
+                                                </Grid>
+                                            </Border>
+                                        </Grid>
+                                    </Grid>
+
+                                    <Path x:Name="Path" Width="20" Height="20"
+                                          Stretch="Fill" StrokeLineJoin="Round"
+                                          Stroke="Transparent" Fill="#FF313131"
+                                          VerticalAlignment="Top" HorizontalAlignment="Left"
+                                          Grid.Row="1"
+                                          Data="F1 M 0.5,64.5469L 64.5625,64.4948L 32.5209,0.520813"/>
+
+                                    <Grid Grid.Row="1" DataContext="{TemplateBinding DataContext}"
+                                          Background="Transparent">
+                                        <StackPanel Background="Transparent" Margin="25,35,5,5">
+                                            <TextBlock Text="{Binding Title}" FontSize="16"
+                                                       FontFamily="Segoe UI Light"/>
+                                            <TextBlock Text="{Binding DateAdded, Converter={StaticResource DateConverter}}"
+                                                       FontSize="36" FontFamily="Segoe UI"
+                                                       Margin="0,-8,0,0"/>
+                                        </StackPanel>
+                                        <Image x:Name="mouseOverGlow" Height="98"
+                                               Source="/Assets/bookGlow.png"
+                                               Stretch="UniformToFill" Margin="0,17,5,5"
+                                               VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                                               Opacity="0" IsHitTestVisible="False"/>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Viewbox>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ListViewItemStyle_AlbumGrid" TargetType="ListViewItem">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Height" Value="150"/>
+            <Setter Property="Width" Value="400"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+        <Style x:Key="HeaderTextStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FF313131"/>
+            <Setter Property="FontSize" Value="68"/>
+            <Setter Property="TextWrapping" Value="NoWrap"/>
+            <Setter Property="Margin" Value="82,90,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontWeight" Value="Light"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid x:Name="LayoutRoot" Background="Transparent" Margin="0,-20,0,0">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="GridViewStates">
+                <VisualState x:Name="Browse">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="_gridView1" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="_gridView2" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0.75" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimation From="0" To="1" Duration="0:0:0.5"
+                                         Storyboard.TargetName="_gridView1" Storyboard.TargetProperty="Opacity">
+                            <DoubleAnimation.EasingFunction>
+                                <CubicEase EasingMode="EaseIn"/>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation From="1" To="0" Duration="0:0:0.5"
+                                         Storyboard.TargetName="_gridView2" Storyboard.TargetProperty="Opacity">
+                            <DoubleAnimation.EasingFunction>
+                                <CubicEase EasingMode="EaseIn"/>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Grid">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="_gridView2" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="_gridView1" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0.75" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimation From="0" To="1" Duration="0:0:0.5"
+                                         Storyboard.TargetName="_gridView2" Storyboard.TargetProperty="Opacity">
+                            <DoubleAnimation.EasingFunction>
+                                <CubicEase EasingMode="EaseIn"/>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation From="1" To="0" Duration="0:0:0.5"
+                                         Storyboard.TargetName="_gridView1" Storyboard.TargetProperty="Opacity">
+                            <DoubleAnimation.EasingFunction>
+                                <CubicEase EasingMode="EaseIn"/>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.RenderTransform>
+            <CompositeTransform/>
+        </Grid.RenderTransform>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" x:Name="gridPanelHolder"/>
+
+        <Grid Grid.Row="0" Margin="5" x:Name="_panel_Header">
+            <TextBlock Text="Search Results" Style="{StaticResource HeaderTextStyle}"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Background="Transparent" Orientation="Horizontal">
+                <TextBlock x:Name="_tb_TotalAlbums" Foreground="Transparent"/>
+            </StackPanel>
+
+            <ListView x:Name="_gridView1"
+                     IsItemClickEnabled="True"
+                     Margin="0,-12,0,0"
+                     Grid.Row="1"
+                     ItemContainerStyle="{StaticResource ListViewItemStyle_Album}"
+                     Background="Transparent"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Stretch"
+                     BorderThickness="0"
+                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                     ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                <ListView.RenderTransform>
+                    <CompositeTransform/>
+                </ListView.RenderTransform>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+
+            <ListView x:Name="_gridView2"
+                     IsItemClickEnabled="True"
+                     Visibility="Collapsed"
+                     Margin="0,0,0,0"
+                     Grid.Row="1"
+                     ItemContainerStyle="{StaticResource ListViewItemStyle_AlbumGrid}"
+                     Opacity="0"
+                     Background="Transparent"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Stretch"
+                     BorderThickness="0"
+                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ListView.RenderTransform>
+                    <CompositeTransform/>
+                </ListView.RenderTransform>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <local:AlbumItemSmallView/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapGrid Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="-10,-10,0,10" VerticalAlignment="Bottom"
+              HorizontalAlignment="Stretch" Height="100">
+            <Grid x:Name="_subPanel1">
+                <Grid.RenderTransform>
+                    <CompositeTransform/>
+                </Grid.RenderTransform>
+
+                <Rectangle Stretch="Fill"
+                           Height="120" VerticalAlignment="Bottom" Width="250"
+                           HorizontalAlignment="Left">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush EndPoint="0.05,0.5" StartPoint="0.925,0.5">
+                            <GradientStop Color="#FF313131" Offset="1"/>
+                            <GradientStop Color="#00313131" Offset="0"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                <Rectangle Stretch="Fill"
+                           Height="120" VerticalAlignment="Bottom" Width="250"
+                           HorizontalAlignment="Right">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush EndPoint="0.05,0.5" StartPoint="0.925,0.5">
+                            <GradientStop Color="#FF313131" Offset="0"/>
+                            <GradientStop Color="#00313131" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

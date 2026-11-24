@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="MemoriesDemo.ViewTemplates.PageTemplate_Basic_6"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="700" d:DesignWidth="700">
+    <UserControl.Resources>
+
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid x:Name="_layoutRoot" Margin="0,0,0,0">
+            <Viewbox>
+                <Grid Background="Transparent" Margin="0" Height="700" Width="700">
+                    <Grid x:Name="_1_panel_Img" HorizontalAlignment="Left" Height="234" VerticalAlignment="Top" Width="234"/>
+                    <Grid x:Name="_2_panel_Img" Height="234" VerticalAlignment="Top" Margin="233,0"/>
+                    <Grid x:Name="_3_panel_Img" Height="234" VerticalAlignment="Top" HorizontalAlignment="Right" Width="234"/>
+                    <Grid x:Name="_4_panel_Img" HorizontalAlignment="Left" Width="234" Margin="0,234,0,232"/>
+                    <Grid x:Name="_5_panel_Img" Margin="233,234,233,232"/>
+                    <Grid x:Name="_6_panel_Img" HorizontalAlignment="Right" Width="234" Margin="0,234,0,232"/>
+                    <Rectangle Stretch="Fill" Fill="#FFFF7D00" Height="232" VerticalAlignment="Bottom" d:LayoutOverrides="VerticalAlignment"/>
+                    <Rectangle Stretch="Fill" Fill="White" Margin="0,0,0,232" Height="4" VerticalAlignment="Bottom"/>
+                    <Rectangle Stretch="Fill" Fill="White" Margin="231,0,0,0" Height="468" VerticalAlignment="Top" HorizontalAlignment="Left" Width="4"/>
+
+                    <Grid x:Name="_1_tb_Desc" Width="600" Margin="48,0,72,148" Height="88" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                        <Grid.Tag>
+                            <TextBlock Foreground="White" FontSize="41.333" Width="600" TextWrapping="NoWrap" />
+                        </Grid.Tag>
+                    </Grid>
+                    <Grid x:Name="_2_tb_Desc" Width="600" Margin="48,0,72,37" Height="88" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                        <Grid.Tag>
+                            <TextBlock Foreground="#FF3B1D00" FontSize="24" Width="600" TextWrapping="NoWrap" />
+                        </Grid.Tag>
+                    </Grid>
+                    
+                    <Rectangle Stretch="Fill" Fill="White" Margin="0,0,232,0" Height="468" VerticalAlignment="Top" HorizontalAlignment="Right" Width="4"/>
+                </Grid>
+            </Viewbox>
+        </Grid>
+
+        <Canvas x:Name="_propsView" />
+        <Canvas x:Name="_canvas_LargeView" Background="Transparent" IsHitTestVisible="False" />
+    </Grid>
+</UserControl>
+
