@@ -6,7 +6,7 @@
 
 
 <p align="center"><img src="docs/screenshot-main.png" alt="Main screen" width="720"></p>
-<p align="center"><img src="docs/Win8.1-screenhost.png" alt="Win8.1 Test Screenshot" width="720"></p>
+<p align="center"><img src="docs/Win8.1-screenshot.png" alt="Win8.1 Test Screenshot" width="720"></p>
 
 <p align="right"><sub><b>English</b> · <a href="README.zh-CN.md">简体中文</a></sub></p>
 
