@@ -270,9 +270,7 @@ A: XAML's generated intermediates are cached in `obj/`. After renaming or editin
 - **Microsoft** — for Memories in 2011, and for a Windows 8 that still believed in things
 - **dnSpy** — decompilation, which made the original logic traceable at all
 - **WinDbg / WER LocalDumps** — without that dump, this project would have wandered down the wrong road for another ten rounds
-- **DeepSeek V4.1 Flash** — involved in all of the fix work
 
----
 
 <p align="center">
   <sub>Built with VS2012, a 2011 SDK, and a lot of patience.</sub>
