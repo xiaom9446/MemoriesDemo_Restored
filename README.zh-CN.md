@@ -271,7 +271,7 @@ A：XAML 生成的中间文件缓存在 `obj/`，改名或改清单后必须清�
 - **Microsoft** —— 2011 年的 Memories，和那个还很天真的 Windows 8
 - **dnSpy** —— 反编译，让原版逻辑有迹可循
 - **WinDbg / WER LocalDumps** —— 没有那份 dump，这个项目会在错误的路上再走十轮
-- **DeepSeek V4.1 Flash** —— 参与全部修复工作
+
 
 ---
 
